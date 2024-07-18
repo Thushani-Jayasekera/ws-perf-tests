@@ -5,6 +5,7 @@ POD_NAME="your-pod-name"  # Set your pod name
 LOCAL_PORT=9090
 REMOTE_PORT=9090
 URL="http://localhost:${LOCAL_PORT}/stat"
+LOG_FILE="cx_metrics.log"
 
 # Function to set up port forwarding
 setup_port_forward() {
@@ -29,7 +30,9 @@ setup_port_forward
 
 # Function to check for cx-overflow
 check_cx_metrics() {
-  curl -s $URL | grep -E "upstream_cx_overflow|upstream_cx_active|upstream_cx_total"
+  TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+  echo "[$TIMESTAMP] Checking metrics..." >> ${LOG_FILE}
+  curl -s $URL | grep -E "upstream_cx_overflow|upstream_cx_active|upstream_cx_total" >> ${LOG_FILE}
 }
 
 # Infinite loop to run the check every 5 minutes
