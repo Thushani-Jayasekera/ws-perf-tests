@@ -4,7 +4,7 @@ NAMESPACE="default"  # Set the Kubernetes namespace
 POD_NAME="your-pod-name"  # Set your pod name
 LOCAL_PORT=9090
 REMOTE_PORT=9090
-URL="http://localhost:${LOCAL_PORT}/stat"
+URL="http://localhost:9000/stats"
 LOG_FILE="cx_metrics.log"
 
 # Function to set up port forwarding
